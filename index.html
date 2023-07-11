@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Number Validation</title>
+</head>
+<body>
+    <input type="number" id="card_number">
+    <input type="number"  id="card_cvc">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            setTimeout(() => {
+		                // Card Number Validation
+					jQuery('#card_number').on('input', function() {
+						var maxLength = 16; // Maximum number of characters allowed
+						var currentLength = jQuery(this).val().length;
+						if (currentLength > maxLength) {
+						jQuery(this).val(jQuery(this).val().substring(0, maxLength)); // Truncate the input
+						}
+					});
+					jQuery("#card_number").keydown(function (e) {
+						// Allow: backspace, delete, tab, escape, enter and .
+						if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+							 // Allow: Ctrl/cmd+A
+							(e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: Ctrl/cmd+C
+							(e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: Ctrl/cmd+X
+							(e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: home, end, left, right
+							(e.keyCode >= 35 && e.keyCode <= 39)) {
+								 // let it happen, don't do anything
+								 return;
+						}
+						// Ensure that it is a number and stop the keypress
+						if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+							e.preventDefault();
+						}
+					});
+			
+                        // CVC Number Validation
+					jQuery('#card_cvc').on('input', function() {
+						var maxLength = 4; // Maximum number of characters allowed
+						var currentLength = jQuery(this).val().length;
+
+						if (currentLength > maxLength) {
+						jQuery(this).val(jQuery(this).val().substring(0, maxLength)); // Truncate the input
+						}
+					});
+						jQuery("#card_cvc").keydown(function (e) {
+						// Allow: backspace, delete, tab, escape, enter and .
+						if (jQuery.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+							 // Allow: Ctrl/cmd+A
+							(e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: Ctrl/cmd+C
+							(e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: Ctrl/cmd+X
+							(e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+							 // Allow: home, end, left, right
+							(e.keyCode >= 35 && e.keyCode <= 39)) {
+								 // let it happen, don't do anything
+								 return;
+						}
+						// Ensure that it is a number and stop the keypress
+						if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+							e.preventDefault();
+						}
+					});
+			
+		},10000);
+		
+	});
+    </script>
+</body>
+</html>
